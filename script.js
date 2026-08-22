@@ -1,275 +1,226 @@
-// ===========================
-// MOBILE MENU TOGGLE
-// ===========================
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
+// ===================================================
+// THENDRAL WIND TECH LLP - SCRIPT
+// Production & Corporate Configuration
+// ===================================================
 
-menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
+document.addEventListener('DOMContentLoaded', () => {
+    // ===========================
+    // MOBILE NAVIGATION
+    // ===========================
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
 
-// Close menu when link is clicked
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-    });
-});
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
 
-// ===========================
-// SMOOTH SCROLLING
-// ===========================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+        // Close on link click
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
             });
-        }
-    });
+        });
+    }
+
+    // ===========================
+    // TECHNICAL RFQ FORM
+    // ===========================
+    const rfqForm = document.querySelector('.rfq-form');
+    if (rfqForm) {
+        rfqForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const submitBtn = rfqForm.querySelector('button[type="submit"]');
+            const originalHtml = submitBtn.innerHTML;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Request Received - Our Engineering Team Will Contact You';
+            submitBtn.style.backgroundColor = '#059669';
+
+            setTimeout(() => {
+                rfqForm.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalHtml;
+                submitBtn.style.backgroundColor = '';
+            }, 4000);
+        });
+    }
 });
 
 // ===========================
-// ANIMATED COUNTER
+// OFFICIAL ISO DATASET
 // ===========================
-function animateCounters() {
-    const statNumbers = document.querySelectorAll('.stat-number:not(.stat-special)');
-    
-    statNumbers.forEach(element => {
-        const target = parseInt(element.dataset.target);
-        const duration = 2000; // 2 seconds
-        const increment = target / (duration / 16); // 60fps
-        let current = 0;
-
-        const counter = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                element.textContent = target;
-                clearInterval(counter);
-            } else {
-                element.textContent = Math.floor(current);
-            }
-        }, 16);
-    });
-}
-
-// Intersection Observer for counter animation
-const statsSection = document.getElementById('stats');
-const observerOptions = {
-    threshold: 0.5
+const officialCertificates = {
+    qms: {
+        standard: 'ISO 9001:2015',
+        systemType: 'Quality Management System',
+        company: 'THENDRAL WIND TECH LLP',
+        unitAddress: 'UNIT NO. 015, JEYALAKSHMI MILL BACK SIDE, CHELLANDIAMMAN NAGAR, SINGANALLUR / UPPILIPALAYAM, COIMBATORE, TAMIL NADU, 641015, INDIA',
+        regAddress: 'D.NO, 80-B NAGAL NAGAR, PONSRINIVASAN NAGAR, ADIANOOTHU, DINDIGUL EAST, DINDIGUL - 624003, INDIA',
+        scope: 'MECHANICAL INSPECTION, MAINTENANCE, AND TECHNICAL /MANPOWER SUPPORT FOR WIND TURBINE GEARBOXES AND ROTATING EQUIPMENT',
+        certNo: 'THE/QMS/H26/5981',
+        initialDate: '07.08.2023',
+        issueDate: '07.08.2026',
+        surveillance1: '07.07.2027',
+        surveillance2: '07.07.2028',
+        recertDue: '06.08.2029',
+        expiryDate: '06.08.2027',
+        accreditationNo: 'CB-MS-2809',
+        certBody: 'SAARA MANAGEMENT SYSTEM PRIVATE LIMITED',
+        certBodyAddress: 'F-7, Top Floor, Main Road, Kalka Ji, New Delhi-110019, India',
+        portalUrl: 'http://www.saaracertification.com'
+    },
+    ems: {
+        standard: 'ISO 14001:2015',
+        systemType: 'Environmental Management System',
+        company: 'THENDRAL WIND TECH LLP',
+        unitAddress: 'UNIT NO. 015, JEYALAKSHMI MILL BACK SIDE, CHELLANDIAMMAN NAGAR, SINGANALLUR / UPPILIPALAYAM, COIMBATORE, TAMIL NADU, 641015, INDIA',
+        regAddress: 'D.NO, 80-B NAGAL NAGAR, PONSRINIVASAN NAGAR, ADIANOOTHU, DINDIGUL EAST, DINDIGUL - 624003, INDIA',
+        scope: 'MECHANICAL INSPECTION, MAINTENANCE, AND TECHNICAL /MANPOWER SUPPORT FOR WIND TURBINE GEARBOXES AND ROTATING EQUIPMENT',
+        certNo: 'THE/EMS/H26/2612',
+        initialDate: '07.08.2026',
+        issueDate: '07.08.2026',
+        surveillance1: '07.07.2027',
+        surveillance2: '07.07.2028',
+        recertDue: '06.08.2029',
+        expiryDate: '06.08.2027',
+        accreditationNo: 'CB-MS-2808',
+        certBody: 'SAARA MANAGEMENT SYSTEM PRIVATE LIMITED',
+        certBodyAddress: 'F-7, Top Floor, Main Road, Kalka Ji, New Delhi-110019, India',
+        portalUrl: 'http://www.saaracertification.com'
+    },
+    ohs: {
+        standard: 'ISO 45001:2018',
+        systemType: 'Occupational Health and Safety Management System',
+        company: 'THENDRAL WIND TECH LLP',
+        unitAddress: 'UNIT NO. 015, JEYALAKSHMI MILL BACK SIDE, CHELLANDIAMMAN NAGAR, SINGANALLUR / UPPILIPALAYAM, COIMBATORE, TAMIL NADU, 641015, INDIA',
+        regAddress: 'D.NO, 80-B NAGAL NAGAR, PONSRINIVASAN NAGAR, ADIANOOTHU, DINDIGUL EAST, DINDIGUL - 624003, INDIA',
+        scope: 'MECHANICAL INSPECTION, MAINTENANCE, AND TECHNICAL /MANPOWER SUPPORT FOR WIND TURBINE GEARBOXES AND ROTATING EQUIPMENT',
+        certNo: 'THE/OHS/H26/3932',
+        initialDate: '07.08.2026',
+        issueDate: '07.08.2026',
+        surveillance1: '07.07.2027',
+        surveillance2: '07.07.2028',
+        recertDue: '06.08.2029',
+        expiryDate: '06.08.2027',
+        accreditationNo: 'CB-MS-2812',
+        certBody: 'SAARA MANAGEMENT SYSTEM PRIVATE LIMITED',
+        certBodyAddress: 'F-7, Top Floor, Main Road, Kalka Ji, New Delhi-110019, India',
+        portalUrl: 'http://www.saaracertification.com'
+    }
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-            entry.target.classList.add('animated');
-            animateCounters();
-        }
-    });
-}, observerOptions);
-
-if (statsSection) {
-    observer.observe(statsSection);
-}
-
 // ===========================
-// FORM SUBMISSION
+// CERTIFICATE MODAL
 // ===========================
-const contactForm = document.querySelector('.contact-form');
+window.openCertModal = function(type) {
+    const cert = officialCertificates[type];
+    if (!cert) return;
 
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(contactForm);
-        const data = {
-            name: contactForm.querySelector('input[type="text"]').value,
-            email: contactForm.querySelector('input[type="email"]').value,
-            company: contactForm.querySelectorAll('input[type="text"]')[1].value,
-            message: contactForm.querySelector('textarea').value
-        };
+    const modal = document.getElementById('certificateModal');
+    const content = document.getElementById('certDocumentContent');
+    if (!modal || !content) return;
 
-        // Show success message
-        const button = contactForm.querySelector('button');
-        const originalText = button.textContent;
-        button.textContent = 'Message Sent!';
-        button.style.background = '#00a86b';
+    content.innerHTML = `
+        <div class="cert-frame">
+            <div class="cert-doc-header">
+                <div class="cert-crest-badge"><i class="fas fa-shield-alt"></i></div>
+                <h2 class="cert-doc-title">Certificate of Registration</h2>
+                <p class="cert-doc-intro">This is to certify that the <strong>${cert.systemType}</strong> of</p>
+                <div class="cert-doc-company">${cert.company}</div>
+                <div class="cert-doc-addresses">
+                    <p><strong>UNIT ADD.:</strong> ${cert.unitAddress}</p>
+                    <p style="margin-top: 4px;"><strong>REGIST. ADD.:</strong> ${cert.regAddress}</p>
+                </div>
+                <p class="cert-doc-intro">has been successfully assessed & conforms with the following standard:</p>
+            </div>
 
-        // Reset form
-        contactForm.reset();
+            <div class="cert-doc-standard-box">
+                <div class="cert-doc-standard-num">${cert.standard}</div>
+                <div class="cert-doc-standard-desc">${cert.systemType}</div>
+            </div>
 
-        // Restore button after 3 seconds
-        setTimeout(() => {
-            button.textContent = originalText;
-            button.style.background = '';
-        }, 3000);
+            <div class="cert-doc-scope-box">
+                <div class="cert-doc-scope-title"><i class="fas fa-certificate"></i> Scope of Certification</div>
+                <div class="cert-doc-scope-text">"${cert.scope}"</div>
+            </div>
 
-        console.log('Form submitted with data:', data);
-    });
-}
+            <table class="cert-doc-table">
+                <tbody>
+                    <tr>
+                        <td class="c-label">Certificate No.</td>
+                        <td class="c-val"><span class="font-mono">${cert.certNo}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="c-label">Initial Registration Date</td>
+                        <td class="c-val">${cert.initialDate}</td>
+                    </tr>
+                    <tr>
+                        <td class="c-label">Issue Date</td>
+                        <td class="c-val">${cert.issueDate}</td>
+                    </tr>
+                    <tr>
+                        <td class="c-label">Surveillance 1 Audit Date</td>
+                        <td class="c-val">${cert.surveillance1}</td>
+                    </tr>
+                    <tr>
+                        <td class="c-label">Surveillance 2 Audit Date</td>
+                        <td class="c-val">${cert.surveillance2}</td>
+                    </tr>
+                    <tr>
+                        <td class="c-label">Re-Certification Due Before</td>
+                        <td class="c-val">${cert.recertDue}</td>
+                    </tr>
+                    <tr>
+                        <td class="c-label">Date of Expiry</td>
+                        <td class="c-val" style="color: #b91c1c;">${cert.expiryDate}</td>
+                    </tr>
+                    <tr>
+                        <td class="c-label">Accreditation Number</td>
+                        <td class="c-val">${cert.accreditationNo} (UAF / IAF MLA)</td>
+                    </tr>
+                </tbody>
+            </table>
 
-// ===========================
-// REQUEST SERVICE BUTTON
-// ===========================
-const requestServiceBtn = document.getElementById('requestServiceBtn');
-const contactBtn = document.getElementById('contactBtn');
+            <div class="cert-doc-footer">
+                <div style="display: flex; gap: 10px;">
+                    <div class="cert-accred-box"><i class="fas fa-check-circle" style="color: #0284c7;"></i> UAF Accredited</div>
+                    <div class="cert-accred-box"><i class="fas fa-handshake" style="color: #059669;"></i> IAF MLA Signatory</div>
+                </div>
+                <div>
+                    <div class="cert-signature-line"></div>
+                    <div class="cert-sign-title">Authorized Signatory / Director</div>
+                </div>
+            </div>
 
-if (requestServiceBtn) {
-    requestServiceBtn.addEventListener('click', () => {
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    });
-}
+            <div class="cert-registrar-info">
+                <p><strong>Certification Body:</strong> ${cert.certBody}</p>
+                <p>${cert.certBodyAddress}</p>
+                <p style="margin-top: 6px;">
+                    <a href="${cert.portalUrl}" target="_blank" rel="noopener noreferrer" style="color: #0b5cab; font-weight: 700; text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> Verify Certificate at ${cert.portalUrl}
+                    </a>
+                </p>
+            </div>
+        </div>
+    `;
 
-if (contactBtn) {
-    contactBtn.addEventListener('click', () => {
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    });
-}
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+};
 
-// ===========================
-// SCROLL ANIMATIONS FOR ELEMENTS
-// ===========================
-const elements = document.querySelectorAll('.service-card, .feature-card, .industry-item');
+window.closeCertModal = function() {
+    const modal = document.getElementById('certificateModal');
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+};
 
-const elementObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-            elementObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.1 });
-
-elements.forEach(element => {
-    element.style.opacity = '0';
-    elementObserver.observe(element);
-});
-
-// ===========================
-// NAVBAR SCROLL EFFECT
-// ===========================
-const navbar = document.querySelector('.navbar');
-let lastScrollTop = 0;
-
-window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > 100) {
-        navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
-    } else {
-        navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
-    }
-    
-    lastScrollTop = scrollTop;
-});
-
-// ===========================
-// GALLERY LIGHTBOX EFFECT
-// ===========================
-const galleryItems = document.querySelectorAll('.gallery-item');
-
-galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-        const img = item.querySelector('img');
-        const src = img.src;
-        // Here you could implement a lightbox modal
-        // For now, we just log it
-        console.log('Gallery item clicked:', src);
-    });
-});
-
-// ===========================
-// LAZY LOADING SIMULATION
-// ===========================
-function lazyLoadImages() {
-    const images = document.querySelectorAll('img');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.style.opacity = '0';
-                img.addEventListener('load', () => {
-                    img.style.transition = 'opacity 0.3s ease';
-                    img.style.opacity = '1';
-                });
-                observer.unobserve(img);
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    images.forEach(img => imageObserver.observe(img));
-}
-
-lazyLoadImages();
-
-// ===========================
-// PARALLAX EFFECT FOR HERO
-// ===========================
-const heroBackground = document.querySelector('.hero-background');
-
-window.addEventListener('scroll', () => {
-    const scrollPosition = window.pageYOffset;
-    if (heroBackground) {
-        heroBackground.style.backgroundPosition = `center ${scrollPosition * 0.5}px`;
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        window.closeCertModal();
     }
 });
-
-// ===========================
-// UTILITY FUNCTIONS
-// ===========================
-
-// Debounce function for performance
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Check if element is in viewport
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.bottom >= 0
-    );
-}
-
-// ===========================
-// PAGE LOAD ANIMATION
-// ===========================
-window.addEventListener('load', () => {
-    document.body.style.opacity = '1';
-});
-
-// ===========================
-// PERFORMANCE OPTIMIZATION
-// ===========================
-
-// Disable animations on reduced motion preference
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.documentElement.style.scrollBehavior = 'auto';
-}
-
-// Add loading attribute to images for better performance
-document.querySelectorAll('img').forEach(img => {
-    img.loading = 'lazy';
-});
-
-// Log script initialization
-console.log('Thendral Wind landing page loaded successfully');
